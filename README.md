@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Agent UI - React Frontend for Conversational Agent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project provides a React-based user interface for interacting with a local conversational AI agent. It features a microphone button to control listening, real-time transcription display, and displays the user's input and the AI's response.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+* **Microphone Control:** Start and stop listening with a single button.
+* **Real-time Transcription:** Displays the user's speech as it's being transcribed.
+* **Conversation Display:** Shows the user's input and the AI's response.
+* **Simple and User-Friendly Interface:** Designed for easy interaction.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Node.js and npm:** Ensure Node.js and npm are installed on your system. You can download them from [nodejs.org](https://nodejs.org/).
+* **A running Flask API:** This UI is designed to work with the Flask API provided in the associated conversational agent project. Ensure that the API is running before starting the UI.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1.  **Clone the Repository (Optional):**
+    ```bash
+    git clone <repository_url>
+    cd agent-ui
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    npm install axios
+    ```
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.  **Start the Flask API:**
+    * Ensure the Flask API is running on `http://127.0.0.1:5000`. Refer to the agent's project documentation for instructions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2.  **Start the React App:**
+    ```bash
+    npm start
+    ```
+    * This will open the UI in your default web browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3.  **Interact with the Agent:**
+    * Click the "Listen" button to start listening.
+    * Speak into the microphone.
+    * The transcription will be displayed in real-time.
+    * Click the "Stop" button to stop listening and receive the AI's response.
+    * The user's input and the AI's response will be displayed on the screen.
 
-### `npm run eject`
+## Project Structure
+```
+agent-ui/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js         # Main component for the UI
+│   ├── index.js       # Entry point for the React app
+│   └── ...
+├── package.json     # Project dependencies and scripts
+└── README.md
+```
+## Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* **React:** JavaScript library for building user interfaces.
+* **Axios:** Promise-based HTTP client for making API requests.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* The UI communicates with the Flask API at `http://127.0.0.1:5000`. If your API is running on a different address or port, modify the API endpoints in `src/App.js`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Troubleshooting
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **API Connection Issues:**
+    * Ensure the Flask API is running and accessible.
+    * Check the API endpoints in `src/App.js`.
+* **Browser Console Errors:**
+    * Open the browser's developer console for error messages.
+* **Microphone Issues:**
+    * Ensure your microphone is properly connected and configured.
+    * Grant microphone access to your browser.
