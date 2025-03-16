@@ -4,9 +4,15 @@ import axios from 'axios';
 function App() {
   const [userInput, setUserInput] = useState('');
   const [conversation, setConversation] = useState([]);
+  const [modelName, setModelName] = useState('deepseek-r1:1.5b');
 
   const handleSendMessage = () => {
-    axios.post('http://127.0.0.1:5000/send_message', { message: userInput })
+    if (!userInput.trim()) {
+      alert('Please enter a message.');
+      return;
+    }
+
+    axios.post('http://127.0.0.1:5000/send_message', { message: userInput, model: modelName })
       .then((response) => {
         const newAiResponse = response.data.ai_response;
         setConversation([
@@ -22,6 +28,8 @@ function App() {
   };
 
   const formatMessage = (content) => {
+    if (!content) return null; // Check if content is null or undefined
+
     let formattedContent = content.split('\n').map((line, index) => {
       if (line.startsWith('* ')) {
         const text = line.substring(2);
@@ -38,7 +46,8 @@ function App() {
   };
 
   const formatBold = (text) => {
-    if (!text) return null;
+    if (!text) return null; // Check if text is null or undefined
+
     let parts = text.split('**');
     let formattedParts = [];
     for (let i = 0; i < parts.length; i++) {
@@ -68,6 +77,14 @@ function App() {
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="Type your message..."
         />
+        <select
+          style={styles.select}
+          value={modelName}
+          onChange={(e) => setModelName(e.target.value)}
+        >
+          <option value="deepseek-r1:1.5b">DeepSeek R1</option>
+          <option value="llama3-chatqa">Llama3 ChatQA</option>
+        </select>
         <button style={styles.sendButton} onClick={handleSendMessage}>Send</button>
       </div>
     </div>
@@ -122,6 +139,13 @@ const styles = {
     borderRadius: '8px',
     marginRight: '10px',
     resize: 'vertical',
+    fontSize: '16px',
+  },
+  select: {
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    marginRight: '10px',
     fontSize: '16px',
   },
   sendButton: {
